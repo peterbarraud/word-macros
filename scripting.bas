@@ -1,26 +1,65 @@
-Attribute VB_Name = "Module2"
-Sub UseFileSystemObject()
+Attribute VB_Name = "Module1"
+Sub readFileAttributes()
+    Const FILEPATH = "C:\Users\barraud\Documents\work\vba-macros\readme.md"
+    Dim readFile As file
+    Dim fileSystemObject As Scripting.fileSystemObject
+    Set fileSystemObject = New Scripting.fileSystemObject
     
-    Const FOLDERPATH = ""
+    Set readFile = fileSystemObject.GetFile(FILEPATH)
+    Debug.Print readFile.Attributes
+    If readFile.Attributes And ReadOnly Then
+        Debug.Print "Is ReadOnly"
+    ElseIf readFile.Attributes And Compressed Then
+        Debug.Print "Is Compressed"
+    'etc
+    End If
+    
+
+End Sub
+
+Sub readFile()
+    Const FILEPATH = "C:\Users\barraud\Documents\work\vba-macros\readme.md"
+    Dim readFile As TextStream
+    Dim fileSystemObject As Scripting.fileSystemObject
+    Set fileSystemObject = New Scripting.fileSystemObject
+    Set readFile = fileSystemObject.OpenTextFile(FILEPATH, ForReading)
+    Do Until readFile.AtEndOfStream
+        Debug.Print readFile.ReadLine
+    Loop
+    
+    readFile.Close
+
+End Sub
+
+Sub writeFile()
+    Const FILEPATH = "C:\Users\barraud\Documents\work\vba-macros\readme.log"
+    Dim writeFile As TextStream
+    Dim fileSystemObject As Scripting.fileSystemObject
+    Set fileSystemObject = New Scripting.fileSystemObject
+    Set writeFile = fileSystemObject.CreateTextFile(FILEPATH, False)
+    
+    writeFile.WriteLine "line 1"
+    writeFile.WriteLine "line 2"
+    
+    writeFile.Close
+    
+
+End Sub
+
+Sub iterateFilesInFolder()
+    Const FOLDERPATH = "C:\Users\barraud\Documents\work\vba-macros"
+    
     Dim fileSystemObject As Scripting.fileSystemObject
     Dim folderObject As Folder
-    Dim file As file
+    Dim fileInFolder As file
     
-    Dim selectedFile As file
+    Set fileSystemObject = New Scripting.fileSystemObject
     
     Set folderObject = fileSystemObject.GetFolder(FOLDERPATH)
     
-    selectedFile = fileSystemObject.GetFile(FILEPATH)
-    
-    For Each file In folderObject.Files
-        Debug.Print file.Name
-        ' File attributes
-        ' Check if the file is read-only
-        If file.Attributes And ReadOnly Then
-            Debug.Print "File is Read-only"
-        End If
+    For Each fileInFolder In folderObject.Files
+        Debug.Print fileInFolder.Name
     Next
-    
-    
+
 End Sub
 
