@@ -1,4 +1,4 @@
-Attribute VB_Name = "Module1"
+Attribute VB_Name = "tables"
 Sub iterateTable()
 '
 ' full_table_macro Macro
@@ -9,7 +9,7 @@ Sub iterateTable()
     Dim sCellText As String
     
     
-    For Each oRow In ActiveDocument.Tables(1).Rows
+    For Each oRow In ActiveDocument.tables(1).Rows
         For Each oCell In oRow.Cells
             sCellText = oCell.Range
             sCellText = Left$(sCellText, Len(sCellText) - 2)

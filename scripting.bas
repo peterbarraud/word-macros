@@ -1,9 +1,9 @@
-Attribute VB_Name = "Module1"
+Attribute VB_Name = "scripts"
 Sub readFileAttributes()
     Const FILEPATH = "C:\Users\barraud\Documents\work\vba-macros\readme.md"
     Dim readFile As file
-    Dim fileSystemObject As Scripting.fileSystemObject
-    Set fileSystemObject = New Scripting.fileSystemObject
+    Dim fileSystemObject As scripting.fileSystemObject
+    Set fileSystemObject = New scripting.fileSystemObject
     
     Set readFile = fileSystemObject.GetFile(FILEPATH)
     Debug.Print readFile.Attributes
@@ -20,8 +20,8 @@ End Sub
 Sub readFile()
     Const FILEPATH = "C:\Users\barraud\Documents\work\vba-macros\readme.md"
     Dim readFile As TextStream
-    Dim fileSystemObject As Scripting.fileSystemObject
-    Set fileSystemObject = New Scripting.fileSystemObject
+    Dim fileSystemObject As scripting.fileSystemObject
+    Set fileSystemObject = New scripting.fileSystemObject
     Set readFile = fileSystemObject.OpenTextFile(FILEPATH, ForReading)
     Do Until readFile.AtEndOfStream
         Debug.Print readFile.ReadLine
@@ -34,8 +34,8 @@ End Sub
 Sub writeFile()
     Const FILEPATH = "C:\Users\barraud\Documents\work\vba-macros\readme.log"
     Dim writeFile As TextStream
-    Dim fileSystemObject As Scripting.fileSystemObject
-    Set fileSystemObject = New Scripting.fileSystemObject
+    Dim fileSystemObject As scripting.fileSystemObject
+    Set fileSystemObject = New scripting.fileSystemObject
     Set writeFile = fileSystemObject.CreateTextFile(FILEPATH, False)
     
     writeFile.WriteLine "line 1"
@@ -49,11 +49,11 @@ End Sub
 Sub iterateFilesInFolder()
     Const FOLDERPATH = "C:\Users\barraud\Documents\work\vba-macros"
     
-    Dim fileSystemObject As Scripting.fileSystemObject
+    Dim fileSystemObject As scripting.fileSystemObject
     Dim folderObject As Folder
     Dim fileInFolder As file
     
-    Set fileSystemObject = New Scripting.fileSystemObject
+    Set fileSystemObject = New scripting.fileSystemObject
     
     Set folderObject = fileSystemObject.GetFolder(FOLDERPATH)
     

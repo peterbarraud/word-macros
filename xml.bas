@@ -1,4 +1,4 @@
-Attribute VB_Name = "Module1"
+Attribute VB_Name = "manageXml"
 Sub HandleXml()
 '
 ' next_line Macro
